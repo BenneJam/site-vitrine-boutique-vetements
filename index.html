@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bratan Clothing - Reproduction</title>
+    <style>
+        /* --- RESET ET STYLE DE BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- BARRE D'ANNONCE (MARQUEE) --- */
+        .announcement-bar {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 15s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- HEADER --- */
+        header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .header-icons span {
+            margin-left: 20px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* --- HERO SECTION (IMAGE PRINCIPALE) --- */
+        .hero {
+            height: 80vh;
+            background-color: #1a1a1a; /* Placeholder pour l'image */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .btn-hero {
+            background-color: white;
+            color: black;
+            padding: 15px 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-hero:hover {
+            background-color: #ddd;
+        }
+
+        /* --- SECTION PRODUITS --- */
+        .products-section {
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 350px;
+            background-color: #f4f4f4; /* Placeholder gris */
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        /* Badge Promo */
+        .promo-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #d32f2f;
+            color: white;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .product-title {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .product-price {
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 10px;
+        }
+
+        /* --- SECTION FEATURES (ICONES) --- */
+        .features {
+            background-color: #f9f9f9;
+            padding: 50px 40px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .feature-item {
+            flex: 1;
+            min-width: 200px;
+            margin: 20px;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .feature-desc {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #111;
+            color: white;
+            padding: 60px 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .footer-column h4 {
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-size: 1rem;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        .newsletter input {
+            padding: 10px;
+            width: 200px;
+            border: none;
+        }
+
+        .newsletter button {
+            padding: 10px 20px;
+            background-color: white;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .copyright {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="announcement-bar">
+        <div class="marquee-content">
+            NOUVELLE COLLECTION &nbsp; • &nbsp; LIVRAISON EN 48H 📦 &nbsp; • &nbsp; WORLD WIDE SHIPPING 🌎 &nbsp; • &nbsp; NOUVELLE COLLECTION &nbsp; • &nbsp; LIVRAISON EN 48H 📦 &nbsp; • &nbsp; WORLD WIDE SHIPPING 🌎
+        </div>
+    </div>
+
+    <header>
+        <div class="logo">BRATAN CLOTHING</div>
+        <nav>
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">T-shirts</a></li>
+                <li><a href="#">Vestes</a></li>
+                <li><a href="#">Accessoires</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-icons">
+            <span>🔍</span> <span>👤</span> <span>🛒 (0)</span> </div>
+    </header>
+
+    <section class="hero">
+        <div>
+            <h1>NOUVELLE COLLECTION LIMITÉE</h1>
+            <button class="btn-hero">Découvrir</button>
+        </div>
+    </section>
+
+    <section class="products-section">
+        <h2 class="section-title">Nos Best Sellers</h2>
+        <div class="product-grid">
+            
+            <div class="product-card">
+                <div class="product-image">
+                     </div>
+                <div class="product-title">Veste "СОВЕТСКИЙ"</div>
+                <div class="product-price">149,99 €</div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="promo-badge">PROMO</span>
+                </div>
+                <div class="product-title">T-shirt Oversize "NOT FROM PARIS"</div>
+                <div class="product-price"><span class="old-price">49,90 €</span> 49,99 €</div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image"></div>
+                <div class="product-title">Hoodie “BRATAN”</div>
+                <div class="product-price">69,99 €</div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image"></div>
+                <div class="product-title">Cagoule "BRAT"</div>
+                <div class="product-price">19,99 €</div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="feature-item">
+            <div class="feature-icon">🚀</div>
+            <div class="feature-title">Livraison Rapide</div>
+            <div class="feature-desc">Livraison en France et à l'international.</div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">🔒</div>
+            <div class="feature-title">Paiement Sécurisé</div>
+            <div class="feature-desc">Transactions 100% sécurisées sur notre site.</div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">🇫🇷</div>
+            <div class="feature-title">Made in France</div>
+            <div class="feature-desc">Designé et marqué en France.</div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">💬</div>
+            <div class="feature-title">Service Client</div>
+            <div class="feature-desc">Réponse rapide du Lundi au Vendredi.</div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Liens Rapides</h4>
+                <ul>
+                    <li><a href="#">Recherche</a></li>
+                    <li><a href="#">Expédition</a></li>
+                    <li><a href="#">Retours</a></li>
+                    <li><a href="#">CGV</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <ul>
+                    <li>bratan.contact@gmail.com</li>
+                    <li>Lun-Ven: 11h - 16h</li>
+                </ul>
+            </div>
+            <div class="footer-column newsletter">
+                <h4>Newsletter</h4>
+                <p style="color: #bbb; font-size: 0.9rem; margin-bottom: 10px;">Soyez les premiers informés.</p>
+                <form>
+                    <input type="email" placeholder="Votre email">
+                    <button type="button">OK</button>
+                </form>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2024 Bratan Clothing. Tous droits réservés.
+        </div>
+    </footer>
+
+</body>
+</html>
