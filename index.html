@@ -16,9 +16,9 @@
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         background-color: #111;
         background-image: radial-gradient(circle at 50% 50%, #2a2a2a, #111);
-        /* MODIFICATION : Texte en blanc pur pour plus d'éclat */
         color: #ffffff;
         line-height: 1.6;
+        overflow-x: hidden;
       }
 
       a {
@@ -31,24 +31,33 @@
         list-style: none;
       }
 
-      /* --- BARRE D'ANNONCE (MARQUEE) --- */
+      /* --- BARRE D'ANNONCE (MARQUEE 4X) --- */
       .announcement-bar {
         background-color: #c5a059;
         color: #000;
-        padding: 10px 0;
+        padding: 12px 0;
         overflow: hidden;
+        position: relative;
+        z-index: 2000;
+      }
+
+      .marquee-track {
+        display: flex;
+        width: fit-content;
+        animation: scroll 30s linear infinite;
+      }
+
+      .marquee-item {
         white-space: nowrap;
-        font-size: 0.9rem;
-        font-weight: bold;
+        font-weight: 800;
         text-transform: uppercase;
+        font-size: 0.9rem;
+        padding-right: 50px;
+        display: flex;
+        align-items: center;
       }
 
-      .marquee-content {
-        display: inline-block;
-        animation: marquee 15s linear infinite;
-      }
-
-      @keyframes marquee {
+      @keyframes scroll {
         0% {
           transform: translateX(0);
         }
@@ -85,9 +94,8 @@
 
       nav a {
         font-size: 0.9rem;
-        font-weight: 600; /* Un peu plus gras */
+        font-weight: 600;
         text-transform: uppercase;
-        /* MODIFICATION : Liens en blanc pur */
         color: #ffffff;
       }
 
@@ -99,7 +107,6 @@
         margin-left: 20px;
         cursor: pointer;
         font-size: 1.2rem;
-        /* MODIFICATION : Icônes en blanc pur */
         color: #ffffff;
       }
 
@@ -107,11 +114,10 @@
         color: #c5a059;
       }
 
-      /* --- HERO SECTION (IMAGE PRINCIPALE) --- */
+      /* --- HERO SECTION --- */
       .hero {
         height: 80vh;
         background-color: #000;
-        /* Utilisation d'un dégradé sur une couleur unie pour simuler la texture sans image externe si besoin */
         background: linear-gradient(
           135deg,
           rgba(20, 20, 20, 1) 0%,
@@ -133,22 +139,21 @@
         text-shadow: 2px 2px 4px rgba(197, 160, 89, 0.3);
       }
 
-      /* MODIFICATION MAJEURE : BOUTON HERO BLANC */
       .btn-hero {
-        background-color: #ffffff; /* Fond blanc */
-        color: #c5a059; /* Texte Or */
+        background-color: #ffffff;
+        color: #c5a059;
         padding: 15px 35px;
         font-weight: bold;
         text-transform: uppercase;
-        border: 2px solid #ffffff; /* Bordure blanche */
+        border: 2px solid #ffffff;
         cursor: pointer;
         transition: all 0.3s ease;
         box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
       }
 
       .btn-hero:hover {
-        background-color: #c5a059; /* Fond Or au survol */
-        color: #ffffff; /* Texte Blanc au survol */
+        background-color: #c5a059;
+        color: #ffffff;
         border-color: #c5a059;
       }
 
@@ -191,7 +196,6 @@
         cursor: pointer;
         background-color: #1a1a1a;
         padding: 15px;
-        /* MODIFICATION : Bordure subtilement plus claire (blanc transparent) */
         border: 1px solid rgba(255, 255, 255, 0.15);
         transition: border-color 0.3s, box-shadow 0.3s;
       }
@@ -214,8 +218,8 @@
         position: absolute;
         top: 10px;
         left: 10px;
-        background-color: #ffffff; /* Badge blanc */
-        color: #000; /* Texte noir */
+        background-color: #ffffff;
+        color: #000;
         padding: 5px 10px;
         font-size: 0.8rem;
         font-weight: bold;
@@ -227,7 +231,6 @@
         font-weight: bold;
         margin-bottom: 5px;
         text-transform: uppercase;
-        /* MODIFICATION : Titre en blanc pur */
         color: #ffffff;
       }
 
@@ -239,12 +242,12 @@
 
       .old-price {
         text-decoration: line-through;
-        color: #999; /* Un peu plus clair */
+        color: #999;
         margin-right: 10px;
         font-size: 0.95rem;
       }
 
-      /* --- SECTION FEATURES (ICONES) --- */
+      /* --- SECTION FEATURES --- */
       .features {
         background-color: #c5a059;
         background: linear-gradient(to right, #a38143, #c5a059, #a38143);
@@ -254,7 +257,7 @@
         justify-content: space-around;
         flex-wrap: wrap;
         text-align: center;
-        border-top: 1px solid #ffffff; /* Ligne blanche fine de séparation */
+        border-top: 1px solid #ffffff;
         border-bottom: 1px solid #ffffff;
       }
 
@@ -267,7 +270,7 @@
       .feature-icon {
         font-size: 2.5rem;
         margin-bottom: 15px;
-        color: #ffffff; /* Icones blanches sur fond or */
+        color: #ffffff;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
       }
 
@@ -286,7 +289,7 @@
       /* --- FOOTER --- */
       footer {
         background-color: #0a0a0a;
-        color: #ccc; /* Texte général plus clair */
+        color: #ccc;
         padding: 70px 40px 40px;
         border-top: 2px solid #c5a059;
       }
@@ -310,22 +313,20 @@
       }
 
       .footer-column ul li a {
-        /* MODIFICATION : Liens footer plus clairs */
         color: #ddd;
         font-size: 0.9rem;
       }
 
       .footer-column ul li a:hover {
-        color: #ffffff; /* Survol en blanc pur */
+        color: #ffffff;
       }
 
-      /* MODIFICATION MAJEURE : INPUT NEWSLETTER BLANC */
       .newsletter input {
         padding: 12px;
         width: 200px;
         border: 2px solid #ffffff;
-        background-color: #ffffff; /* Fond blanc */
-        color: #000000; /* Texte noir */
+        background-color: #ffffff;
+        color: #000000;
         font-weight: 500;
       }
 
@@ -358,7 +359,7 @@
         margin-top: 60px;
         text-align: center;
         font-size: 0.8rem;
-        color: #888; /* Plus clair */
+        color: #888;
         border-top: 1px solid #222;
         padding-top: 25px;
       }
@@ -366,10 +367,30 @@
   </head>
   <body>
     <div class="announcement-bar">
-      <div class="marquee-content">
-        NOUVELLE COLLECTION &nbsp; • &nbsp; LIVRAISON EN 48H 📦 &nbsp; • &nbsp;
-        WORLD WIDE SHIPPING 🌎 &nbsp; • &nbsp; NOUVELLE COLLECTION &nbsp; •
-        &nbsp; LIVRAISON EN 48H 📦 &nbsp; • &nbsp; WORLD WIDE SHIPPING 🌎
+      <div class="marquee-track">
+        <div class="marquee-item">
+          NOUVELLE COLLECTION &nbsp; • &nbsp; LIVRAISON EN 48H 📦 &nbsp; •
+          &nbsp; WORLD WIDE SHIPPING 🌎 &nbsp; • &nbsp; PAIEMENT SÉCURISÉ 🔒
+          &nbsp; • &nbsp; RETOURS GRATUITS
+        </div>
+
+        <div class="marquee-item">
+          NOUVELLE COLLECTION &nbsp; • &nbsp; LIVRAISON EN 48H 📦 &nbsp; •
+          &nbsp; WORLD WIDE SHIPPING 🌎 &nbsp; • &nbsp; PAIEMENT SÉCURISÉ 🔒
+          &nbsp; • &nbsp; RETOURS GRATUITS
+        </div>
+
+        <div class="marquee-item">
+          NOUVELLE COLLECTION &nbsp; • &nbsp; LIVRAISON EN 48H 📦 &nbsp; •
+          &nbsp; WORLD WIDE SHIPPING 🌎 &nbsp; • &nbsp; PAIEMENT SÉCURISÉ 🔒
+          &nbsp; • &nbsp; RETOURS GRATUITS
+        </div>
+
+        <div class="marquee-item">
+          NOUVELLE COLLECTION &nbsp; • &nbsp; LIVRAISON EN 48H 📦 &nbsp; •
+          &nbsp; WORLD WIDE SHIPPING 🌎 &nbsp; • &nbsp; PAIEMENT SÉCURISÉ 🔒
+          &nbsp; • &nbsp; RETOURS GRATUITS
+        </div>
       </div>
     </div>
 
