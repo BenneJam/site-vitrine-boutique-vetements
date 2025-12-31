@@ -28,6 +28,8 @@ $response = new Response();
 $router = new Router($request, $response);
 
 $router
-    ->addRoute('index', 'indexBoutique', ['GET']);
+    ->addRoute('index', 'indexBoutique', ['GET'])
+    ->addRoute('login', 'loginBoutique', ['GET', 'POST'])
+    ->addRoute('signin', 'signinBoutique', ['GET', 'POST']);
 
 $router->handleRequest();

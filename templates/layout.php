@@ -105,14 +105,16 @@
             color: #c5a059;
         }
 
-        .header-icons span {
+        .header-icons span,
+        .header-icons a {
             margin-left: 20px;
             cursor: pointer;
             font-size: 1.2rem;
             color: #ffffff;
         }
 
-        .header-icons span:hover {
+        .header-icons span:hover,
+        .header-icons a:hover {
             color: #c5a059;
         }
 
@@ -363,6 +365,261 @@
             border-top: 1px solid #222;
             padding-top: 25px;
         }
+
+        /* Section principale qui centre le formulaire */
+        .login-section {
+            flex: 1;
+            /* Prend tout l'espace disponible */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px;
+            background: radial-gradient(circle at center, #222, #0a0a0a);
+        }
+
+        /* La carte du formulaire */
+        .login-container {
+            width: 100%;
+            max-width: 500px;
+            background-color: #1a1a1a;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            /* Bordure subtile style "Luxe" */
+            transition: border-color 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .login-container:hover {
+            border-color: #c5a059;
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.15);
+        }
+
+        .login-container h1 {
+            color: #c5a059;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            letter-spacing: 1px;
+        }
+
+        /* Styles du formulaire */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ffffff;
+            background-color: #ffffff;
+            color: #000;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #c5a059;
+        }
+
+        .form-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            font-size: 0.85rem;
+            color: #bbb;
+        }
+
+        .form-links a:hover {
+            color: #c5a059;
+            text-decoration: underline;
+        }
+
+        /* Bouton spécifique "Submit" (style héritier du btn-hero) */
+        .btn-submit {
+            width: 100%;
+            background-color: #ffffff;
+            color: #c5a059;
+            padding: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: 2px solid #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-submit:hover {
+            background-color: #c5a059;
+            color: #ffffff;
+            border-color: #c5a059;
+        }
+
+        .create-account-link {
+            display: block;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .create-account-link:hover {
+            color: #c5a059;
+        }
+
+        .register-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px;
+            background: radial-gradient(circle at center, #222, #0a0a0a);
+        }
+
+        .register-container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #1a1a1a;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: border-color 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .register-container:hover {
+            border-color: #c5a059;
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.15);
+        }
+
+        .register-container h1 {
+            color: #c5a059;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            letter-spacing: 1px;
+        }
+
+        /* Grille pour aligner Prénom et Nom */
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+            flex: 1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ffffff;
+            background-color: #ffffff;
+            color: #000;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #c5a059;
+        }
+
+        /* Style de la case à cocher (CGV) */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .checkbox-group input {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+            accent-color: #c5a059;
+        }
+
+        .checkbox-group label {
+            font-size: 0.85rem;
+            color: #bbb;
+            text-transform: none;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        .checkbox-group a {
+            text-decoration: underline;
+            color: #ffffff;
+        }
+
+        .checkbox-group a:hover {
+            color: #c5a059;
+        }
+
+        /* Bouton Submit */
+        .btn-submit {
+            width: 100%;
+            background-color: #ffffff;
+            color: #c5a059;
+            padding: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: 2px solid #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-submit:hover {
+            background-color: #c5a059;
+            color: #ffffff;
+            border-color: #c5a059;
+        }
+
+        .login-link {
+            display: block;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .login-link:hover {
+            color: #c5a059;
+        }
     </style>
 </head>
 
@@ -399,7 +656,7 @@
         <div class="logo">BRATAN CLOTHING</div>
         <nav>
             <ul>
-                <li><a href="#">Accueil</a></li>
+                <li><a href="index.php?action=index">Accueil</a></li>
                 <li><a href="#">T-shirts</a></li>
                 <li><a href="#">Vestes</a></li>
                 <li><a href="#">Accessoires</a></li>
@@ -407,7 +664,7 @@
             </ul>
         </nav>
         <div class="header-icons">
-            <span>👤</span>
+            <a href="index.php?action=login">👤</a>
             <span>🛒 (0)</span>
         </div>
     </header>
