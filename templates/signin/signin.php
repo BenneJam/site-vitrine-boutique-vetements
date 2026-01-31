@@ -5,35 +5,43 @@ ob_start();
 <section class="register-section">
     <div class="register-container">
         <h1>Créer un compte</h1>
-        <form>
+        <form method="POST" action="index.php?action=signin">
+            <?php if (!empty($errors)): ?>
+                <div class="error-msg">
+                    <?php foreach ($errors as $err): ?>
+                        <div><?= htmlspecialchars($err) ?></div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+
             <div class="form-row">
                 <div class="form-group">
-                    <label for="firstname">Prénom</label>
-                    <input type="text" id="firstname" placeholder="Jean" required>
+                    <label for="prenom">Prénom</label>
+                    <input type="text" id="prenom" name="prenom" placeholder="Jean" value="<?= htmlspecialchars($old['prenom'] ?? '') ?>" required>
                 </div>
                 <div class="form-group">
-                    <label for="lastname">Nom</label>
-                    <input type="text" id="lastname" placeholder="Dupont" required>
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" name="nom" placeholder="Dupont" value="<?= htmlspecialchars($old['nom'] ?? '') ?>" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" placeholder="jean.dupont@email.com" required>
+                <input type="email" id="email" name="email" placeholder="jean.dupont@email.com" value="<?= htmlspecialchars($old['email'] ?? '') ?>" required>
             </div>
 
             <div class="form-group">
                 <label for="password">Mot de passe</label>
-                <input type="password" id="password" placeholder="••••••••" required>
+                <input type="password" id="password" name="password" placeholder="••••••••" required>
             </div>
 
             <div class="form-group">
-                <label for="confirm_password">Confirmer le mot de passe</label>
-                <input type="password" id="confirm_password" placeholder="••••••••" required>
+                <label for="password_confirmation">Confirmer le mot de passe</label>
+                <input type="password" id="password_confirmation" name="password_confirmation" placeholder="••••••••" required>
             </div>
 
             <div class="checkbox-group">
-                <input type="checkbox" id="terms" required>
+                <input type="checkbox" id="terms" name="terms" value="1" <?= !empty($old['terms']) ? 'checked' : '' ?> required>
                 <label for="terms">J'accepte les <a href="#">conditions générales de vente</a> et la politique de confidentialité.</label>
             </div>
 

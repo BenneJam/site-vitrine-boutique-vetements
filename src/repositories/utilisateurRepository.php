@@ -86,6 +86,12 @@ function ValidateCreateUtilisateurInput(array $data): array
     } elseif ($data['password'] !== $data['password_confirmation']) {
         $erreurs['password_confirmation'] = "Les mots de passe ne correspondent pas.";
     }
+
+    // Vérifier que l'utilisateur a accepté les conditions (checkbox name="terms")
+    if (empty($data['terms'])) {
+        $erreurs['terms'] = "Vous devez accepter les conditions générales de vente.";
+    }
+
     return $erreurs;
 }
 

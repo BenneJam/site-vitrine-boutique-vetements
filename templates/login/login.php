@@ -5,15 +5,23 @@ ob_start();
 <section class="login-section">
     <div class="login-container">
         <h1>Connexion</h1>
-        <form>
+        <form method="POST" action="index.php?action=login">
+            <?php if (!empty($errors)): ?>
+                <div class="error-msg">
+                    <?php foreach ($errors as $err): ?>
+                        <div><?= htmlspecialchars($err) ?></div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" placeholder="EX: JEAN.DUPONT@EMAIL.COM" required>
+                <input type="email" id="email" name="email" placeholder="EX: JEAN.DUPONT@EMAIL.COM" value="<?= htmlspecialchars($old['email'] ?? '') ?>" required>
             </div>
 
             <div class="form-group">
                 <label for="password">Mot de passe</label>
-                <input type="password" id="password" placeholder="••••••••" required>
+                <input type="password" id="password" name="password" placeholder="••••••••" required>
             </div>
 
             <div class="form-links">

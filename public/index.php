@@ -30,6 +30,9 @@ $router = new Router($request, $response);
 $router
     ->addRoute('index', 'indexBoutique', ['GET'])
     ->addRoute('login', 'loginBoutique', ['GET', 'POST'])
-    ->addRoute('signin', 'signinBoutique', ['GET', 'POST']);
+    ->addRoute('signin', 'signinBoutique', ['GET', 'POST'])
+    ->addRoute('dashboard', 'dashboardBoutique', ['GET'])
+    ->addRoute('logout', 'logoutBoutique', ['GET'])
+    ->addRoute('cart', 'cartBoutique', ['GET']);
 
 $router->handleRequest();

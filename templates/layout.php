@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bratan Clothing - Luxury White Edition</title>
+    <title>Noam Clothing - Luxury White Edition</title>
     <style>
         /* --- RESET ET STYLE DE BASE --- */
         * {
@@ -116,6 +116,29 @@
         .header-icons span:hover,
         .header-icons a:hover {
             color: #c5a059;
+        }
+
+        /* Petit texte à côté de l'emoji compte */
+        .header-icons .account-text {
+            margin-left: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: none;
+            color: #ffffff;
+            text-decoration: none;
+            vertical-align: middle;
+        }
+
+        .header-icons .account-divider {
+            margin-left: 6px;
+            margin-right: 6px;
+            color: #ffffff;
+            vertical-align: middle;
+        }
+
+        /* Garder le séparateur '/' blanc au survol */
+        .header-icons .account-divider:hover {
+            color: #ffffff;
         }
 
         /* --- HERO SECTION --- */
@@ -408,6 +431,16 @@
             text-align: left;
         }
 
+        .error-msg {
+            background: #3b1616;
+            color: #ffcccc;
+            padding: 10px;
+            border: 1px solid #7a2a2a;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
         .form-group label {
             display: block;
             margin-bottom: 8px;
@@ -653,7 +686,7 @@
     </div>
 
     <header>
-        <div class="logo">BRATAN CLOTHING</div>
+        <div class="logo">NOAM CLOTHING</div>
         <nav>
             <ul>
                 <li><a href="index.php?action=index">Accueil</a></li>
@@ -664,12 +697,30 @@
             </ul>
         </nav>
         <div class="header-icons">
-            <a href="index.php?action=login">👤</a>
-            <span>🛒 (0)</span>
+            <?php if (isset($_SESSION['user'])): ?>
+                <a href="index.php?action=dashboard">👤 <?= htmlspecialchars($_SESSION['user']['prenom_utilisateur'] ?? '') ?></a>
+                <a href="index.php?action=logout" style="margin-left: 10px;">Déconnexion</a>
+            <?php else: ?>
+                <a href="index.php?action=login">👤</a>
+                <a href="index.php?action=login" class="account-text">Connexion</a>
+                <span class="account-divider">/</span>
+                <a href="index.php?action=signin" class="account-text">Inscription</a>
+            <?php endif; ?>
+            <?php $cart_count = 0;
+            foreach ($_SESSION['cart'] ?? [] as $i) {
+                $cart_count += (int)($i['quantity'] ?? 1);
+            } ?>
+            <a href="index.php?action=cart" class="cart-link">🛒 (<?= $cart_count ?>)</a>
         </div>
     </header>
 
     <main>
+        <?php if (!empty($_SESSION['head_message'])): ?>
+            <div class="flash-message" role="status" style="background:#1a3b1a;color:#dff0d8;padding:12px;border-radius:6px;margin:20px auto;max-width:1000px;text-align:center;">
+                <?= htmlspecialchars($_SESSION['head_message']) ?>
+            </div>
+            <?php unset($_SESSION['head_message']); ?>
+        <?php endif; ?>
         <?= $content ?>
     </main>
 
@@ -687,7 +738,7 @@
             <div class="footer-column">
                 <h4>Contact</h4>
                 <ul>
-                    <li>bratan.contact@gmail.com</li>
+                    <li>noam.contact@gmail.com</li>
                     <li>Lun-Ven: 11h - 16h</li>
                 </ul>
             </div>
@@ -703,7 +754,7 @@
             </div>
         </div>
         <div class="copyright">
-            &copy; 2024 Bratan Clothing. Tous droits réservés.
+            &copy; 2024 Noam Clothing. Tous droits réservés.
         </div>
     </footer>
 </body>
