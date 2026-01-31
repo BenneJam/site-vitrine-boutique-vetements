@@ -120,6 +120,49 @@ function cartBoutique(Request $request, Response $response)
     $response->view(__DIR__ . '/../../templates/cart/cart.php', ['cart' => $cart]);
 }
 
+function tshirtsBoutique(Request $request, Response $response)
+{
+    $response->view(__DIR__ . '/../../templates/tshirts/tshirts.php', []);
+}
+
+function vestesBoutique(Request $request, Response $response)
+{
+    $response->view(__DIR__ . '/../../templates/vestes/vestes.php', []);
+}
+
+function accessoiresBoutique(Request $request, Response $response)
+{
+    $response->view(__DIR__ . '/../../templates/accessoires/accessoires.php', []);
+}
+
+function contactBoutique(Request $request, Response $response)
+{
+    if ($request->isPost()) {
+        $post = $request->allPost();
+        $errors = [];
+        if (empty($post['name'])) {
+            $errors[] = 'Le nom est requis.';
+        }
+        if (empty($post['email']) || !filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
+            $errors[] = 'Email invalide.';
+        }
+        if (empty($post['message'])) {
+            $errors[] = 'Le message est requis.';
+        }
+
+        if (empty($errors)) {
+            $_SESSION['head_message'] = 'Message envoyé. Merci !';
+            $response->redirect('index.php?action=contact');
+            return;
+        }
+
+        $response->view(__DIR__ . '/../../templates/contact/contact.php', ['errors' => $errors, 'old' => $post]);
+        return;
+    }
+
+    $response->view(__DIR__ . '/../../templates/contact/contact.php', ['errors' => [], 'old' => []]);
+}
+
 function logoutBoutique(Request $request, Response $response)
 {
     // Clear session and redirect to home

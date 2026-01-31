@@ -33,6 +33,10 @@ $router
     ->addRoute('signin', 'signinBoutique', ['GET', 'POST'])
     ->addRoute('dashboard', 'dashboardBoutique', ['GET'])
     ->addRoute('logout', 'logoutBoutique', ['GET'])
-    ->addRoute('cart', 'cartBoutique', ['GET']);
+    ->addRoute('cart', 'cartBoutique', ['GET'])
+    ->addRoute('tshirts', 'tshirtsBoutique', ['GET'])
+    ->addRoute('vestes', 'vestesBoutique', ['GET'])
+    ->addRoute('accessoires', 'accessoiresBoutique', ['GET'])
+    ->addRoute('contact', 'contactBoutique', ['GET', 'POST']);
 
 $router->handleRequest();

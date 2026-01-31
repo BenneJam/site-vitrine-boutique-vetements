@@ -92,6 +92,7 @@
         nav ul {
             display: flex;
             gap: 30px;
+            align-items: center;
         }
 
         nav a {
@@ -103,6 +104,28 @@
 
         nav a:hover {
             color: #c5a059;
+        }
+
+        /* Burger button */
+        .burger {
+            display: none;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.6rem;
+            cursor: pointer;
+            margin-left: 12px;
+        }
+
+        /* main-nav used to toggle menu on mobile */
+        .main-nav {
+            display: block;
+        }
+
+        .main-nav ul {
+            display: flex;
+            gap: 30px;
+            align-items: center;
         }
 
         .header-icons span,
@@ -216,6 +239,14 @@
             gap: 50px;
         }
 
+        /* Container spécifique pour les pages produits afin d'autoriser plusieurs colonnes */
+        .products-container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
         .product-card {
             text-align: left;
             cursor: pointer;
@@ -237,6 +268,30 @@
             margin-bottom: 15px;
             position: relative;
             overflow: hidden;
+            background-size: cover;
+            background-position: center;
+        }
+
+        @media (max-width: 1200px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .product-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            .product-image {
+                height: 320px;
+            }
         }
 
         .promo-badge {
@@ -425,10 +480,43 @@
             letter-spacing: 1px;
         }
 
+        /* Container spécifique pour la page Contact */
+        .contact-container {
+            width: 100%;
+            max-width: 900px;
+            background-color: #1a1a1a;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: border-color 0.3s, box-shadow 0.3s;
+            text-align: left;
+            margin: 0 auto;
+        }
+
         /* Styles du formulaire */
         .form-group {
             margin-bottom: 20px;
             text-align: left;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #fff;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .btn-submit {
+            padding: 12px 25px;
         }
 
         .error-msg {
@@ -439,6 +527,88 @@
             border-radius: 4px;
             margin-bottom: 20px;
             text-align: left;
+        }
+
+        /* --- RESPONSIVE: header, nav, layout --- */
+        @media (max-width: 900px) {
+            header {
+                padding: 16px 20px;
+            }
+
+            nav ul {
+                gap: 18px;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .header-icons span,
+            .header-icons a {
+                margin-left: 12px;
+                font-size: 1rem;
+            }
+
+            .products-container {
+                max-width: 900px;
+                padding: 0 16px;
+            }
+
+            .contact-container {
+                padding: 30px;
+            }
+
+            /* Burger menu behavior */
+            .burger {
+                display: block;
+            }
+
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 64px;
+                right: 16px;
+                left: 16px;
+                background: #1a1a1a;
+                border: 1px solid rgba(255, 255, 255, 0.06);
+                padding: 16px;
+                border-radius: 8px;
+                z-index: 1200;
+            }
+
+            .main-nav.open {
+                display: block;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .product-image {
+                height: 320px;
+            }
+
+            .contact-container {
+                padding: 20px;
+            }
         }
 
         .form-group label {
@@ -687,13 +857,14 @@
 
     <header>
         <div class="logo">NOAM CLOTHING</div>
-        <nav>
+        <button class="burger" aria-label="Menu">☰</button>
+        <nav class="main-nav">
             <ul>
                 <li><a href="index.php?action=index">Accueil</a></li>
-                <li><a href="#">T-shirts</a></li>
-                <li><a href="#">Vestes</a></li>
-                <li><a href="#">Accessoires</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="index.php?action=tshirts">T-shirts</a></li>
+                <li><a href="index.php?action=vestes">Vestes</a></li>
+                <li><a href="index.php?action=accessoires">Accessoires</a></li>
+                <li><a href="index.php?action=contact">Contact</a></li>
             </ul>
         </nav>
         <div class="header-icons">
@@ -757,6 +928,23 @@
             &copy; 2024 Noam Clothing. Tous droits réservés.
         </div>
     </footer>
+
+    <script>
+        (function() {
+            var burger = document.querySelector('.burger');
+            var nav = document.querySelector('.main-nav');
+            if (!burger || !nav) return;
+            burger.addEventListener('click', function() {
+                nav.classList.toggle('open');
+            });
+            // close when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!nav.classList.contains('open')) return;
+                if (e.target === burger || nav.contains(e.target)) return;
+                nav.classList.remove('open');
+            });
+        })();
+    </script>
 </body>
 
 </html>
