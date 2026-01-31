@@ -11,74 +11,94 @@ Cette application est une boutique en ligne complète permettant aux utilisateur
 - **Backend** : PHP (Architecture MVC)
 - **Base de Données** : MySQL/MariaDB
 - **Frontend** : HTML, CSS, PHP (Templates)
-- **Serveur** : Apache/PHP
+- **Environnement de développement** : Docker
 
-## 📁 Structure du Projet
+## 🚀 Installation et Configuration avec Docker
 
-```
-site-vitrine-boutique-vetements/
-├── db/
-│   └── init.sql              # Schéma et données initiales de la base de données
-├── public/
-│   └── index.php             # Point d'entrée de l'application
-├── src/
-│   ├── config/
-│   │   └── database.php      # Configuration de la base de données
-│   ├── controllers/
-│   │   └── utilisateurController.php    # Contrôleur utilisateur
-│   ├── Http/
-│   │   ├── Request.php       # Gestion des requêtes HTTP
-│   │   └── Response.php      # Gestion des réponses HTTP
-│   ├── repositories/
-│   │   └── utilisateurRepository.php    # Accès aux données utilisateur
-│   └── Routing/
-│       └── Router.php        # Système de routage
-├── templates/
-│   ├── index.php             # Page d'accueil
-│   ├── layout.php            # Mise en page principale
-│   ├── login/
-│   │   └── login.php         # Page de connexion
-│   └── signin/
-│       └── signin.php        # Page d'inscription
-└── README.md                 # Ce fichier
-```
-
-## 🚀 Installation et Configuration
+Ce projet est entièrement conteneurisé avec Docker, ce qui simplifie grandement l'installation et la configuration.
 
 ### Prérequis
 
-- PHP 7.4 ou supérieur
-- MySQL/MariaDB
-- Apache avec support de URL rewriting
-- Composer (optionnel)
+- [Docker](https://www.docker.com/products/docker-desktop)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
 ### Étapes d'installation
 
 1. **Cloner le projet**
 
    ```bash
-   git clone <url-du-repo>
+   git clone https://github.com/BenneJam/site-vitrine-boutique-vetements.git
    cd site-vitrine-boutique-vetements
    ```
 
-2. **Configurer la base de données**
-   - Créer une nouvelle base de données MySQL
-   - Importer le schéma : `mysql -u user -p database < db/init.sql`
+2. **Lancer les conteneurs Docker**
 
-3. **Configurer les paramètres de connexion**
-   - Modifier `src/config/database.php` avec vos identifiants de base de données
+   ```bash
+   docker-compose up -d
+   ```
 
-4. **Déployer l'application**
-   - Placer les fichiers sur votre serveur web
-   - S'assurer que le dossier `public/` est le point d'entrée
+   Cette commande va construire et démarrer les services définis dans le fichier `docker-compose.yml`.
+
+3. **Lancer le serveur PHP**
+
+   ```php
+   php -S localhost:8080 -t public
+   ```
+
+   Cette commande va lancer un serveur PHP permettant d'accéder à l'application.
+
+4. **Accéder à l'application**
+   - L'application est accessible à l'adresse : `http://localhost:8080/`
+   - La base de données est gérée par phpMyAdmin, accessible à : `http://localhost:8010/`
+
+### Services Docker
+
+Le fichier `docker-compose.yml` définit les services suivants :
+
+- **`db`**: Un conteneur MySQL 8.4 pour la base de données.
+  - **Port**: `3330`
+  - **Identifiants par défaut**:
+    - `MYSQL_ROOT_PASSWORD`: secret
+    - `MYSQL_DATABASE`: db_boutique
+    - `MYSQL_USER`: user
+    - `MYSQL_PASSWORD`: secret
+- **`phpmyadmin`**: Un conteneur phpMyAdmin pour gérer la base de données.
+  - **Port**: `8010`
+
+## 📁 Structure du Projet
+
+```
+site-vitrine-boutique-vetements/
+├── .docker/                # Fichiers de configuration Docker
+│   ├── php/
+│   │   └── php.ini         # Configuration de PHP
+│   └── vhost/
+│       └── default.conf    # Hôte virtuel Apache
+├── db/
+│   └── init.sql            # Schéma et données initiales
+├── public/
+│   └── index.php           # Point d'entrée de l'application
+├── src/
+│   ├── config/
+│   │   └── database.php    # Configuration de la base de données
+│   ├── controllers/
+│   ├── models/
+│   ├── repositories/
+│   └── Routing/
+├── templates/
+│   ├── layout.php          # Mise en page principale
+│   └── ...                 # Autres templates de vues
+├── docker-compose.yml      # Fichier de configuration Docker Compose
+└── README.md               # Ce fichier
+```
 
 ## 📖 Utilisation
 
 ### Accès à l'application
 
-- Accueil : `http://votredomaine.com/`
-- Connexion : `http://votredomaine.com/login`
-- Inscription : `http://votredomaine.com/signin`
+- Accueil : `http://localhost:8080/`
+- Connexion : `http://localhost:8080/login`
+- Inscription : `http://localhost:8080/signin`
 
 ### Fonctionnalités principales
 
@@ -117,19 +137,14 @@ L'application gère :
 - L'authentification (login/logout)
 - L'inscription de nouveaux utilisateurs
 - Les profils utilisateur
-- Les préférences et paramètres
-
-## 📦 Dépendances
-
-Consultez `composer.json` (si présent) pour la liste des dépendances du projet.
 
 ## 🐛 Dépannage
 
 Voici quelques solutions aux problèmes courants :
 
-- **Erreur de connexion BD** : Vérifiez la configuration dans `src/config/database.php`
-- **Erreur 404** : Assurez-vous que URL rewriting est activé dans Apache
-- **Erreur de permissions** : Vérifiez les permissions des dossiers
+- **Erreur de connexion BD** : Vérifiez la configuration dans `src/config/database.php` et les logs du conteneur `db`.
+- **Erreur 404** : Assurez-vous que les conteneurs Docker sont bien en cours d'exécution.
+- **Problèmes de permissions** : Vérifiez les permissions des fichiers et dossiers du projet.
 
 ## Contact
 
